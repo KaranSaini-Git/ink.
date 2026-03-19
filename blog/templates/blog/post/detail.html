@@ -1,0 +1,23 @@
+{% extends "blog/post/base.html" %}
+{% load static %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+
+<a href="/blog/" class="back-link">All posts</a>
+
+<div class="post-header">
+    <h1>{{ post.title }}</h1>
+    <p class="date">
+        {{ post.publish }}
+        <span class="sep"></span>
+        {{ post.author }}
+    </p>
+</div>
+
+<div class="post-body">
+    {{ post.body|linebreaks }}
+</div>
+
+{% endblock %}

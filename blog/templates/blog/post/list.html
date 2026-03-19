@@ -1,0 +1,25 @@
+{% extends "blog/post/base.html" %}
+{% load static %}
+
+{% block title %}My Blog{% endblock %}
+
+{% block content %}
+
+<h1 class="page-title">Latest Posts</h1>
+
+<ul class="post-list">
+    {% for post in posts %}
+    <li class="post-item">
+        <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+        <p class="date">
+            {{ post.publish }}
+            <span class="sep"></span>
+            {{ post.author }}
+        </p>
+        <div class="excerpt">{{ post.body|truncatewords:28|linebreaks }}</div>
+        <a href="{{ post.get_absolute_url }}" class="read-more">Read article</a>
+    </li>
+    {% endfor %}
+</ul>
+{% include "blog/pagination.html" with page=page_obj %}
+{% endblock %}

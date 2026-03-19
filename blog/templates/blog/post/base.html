@@ -1,0 +1,33 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static 'blog/blog.css' %}" rel="stylesheet" />
+  </head>
+  <body>
+    <header id="header">
+      <a href="/blog/" class="logo">ink.</a>
+      <nav>
+        <a href="/blog/">Home</a>
+        <a href="/about">About</a>
+      </nav>
+    </header>
+
+    <main id="content">{% block content %} {% endblock %}</main>
+
+    <aside id="sidebar">
+      <h2>About</h2>
+      <p>This is my blog. Thoughts, notes, and ideas — written down.</p>
+      <div class="divider"></div>
+      <h2>Tags</h2>
+      <a href="#" class="tag">Django</a>
+      <a href="#" class="tag">Python</a>
+      <a href="#" class="tag">Web</a>
+      <a href="#" class="tag">Design</a>
+    </aside>
+
+  </body>
+</html>
