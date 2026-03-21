@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 django = "*"
 python-decouple = "==3.8"
+certifi = "*"
 
 [dev-packages]
 
