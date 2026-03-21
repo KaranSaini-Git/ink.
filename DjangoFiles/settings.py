@@ -33,7 +33,7 @@ ssl._create_default_https_context = ssl.create_default_context
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-k7)yxu7_ht4r3y_r2&(zk(j+c&i9k9jv56)$maqyd0s9kh08=j'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
