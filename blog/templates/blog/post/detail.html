@@ -1,4 +1,4 @@
-{% extends "blog/post/base.html" %}
+{% extends "blog/base.html" %}
 {% load static %}
 
 {% block title %}{{ post.title }}{% endblock %}
@@ -18,6 +18,9 @@
 
 <div class="post-body">
     {{ post.body|linebreaks }}
-</div>
+    </div>
+    <a href="{% url 'blog:post_share' post.id %}" class="read-more" style="margin-top: 32px;">
+    Share this post
+</a>
 
 {% endblock %}

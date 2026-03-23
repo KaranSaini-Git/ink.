@@ -7,6 +7,7 @@ urlpatterns = [
     #list.html
     # path('', views.post_list, name='post_list'),
     path('', views.PostListView.as_view(), name='post_list'),
+    path ('<int:post_id>/share/',views.post_share,name = 'post_share'),
     
     #details.html
     path(

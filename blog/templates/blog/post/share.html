@@ -1,0 +1,26 @@
+{% extends "blog/base.html" %}
+{% block title %}Share a post{% endblock %}
+{% block content %}
+
+{% if sent %}
+<div class="share-success">
+  <h1>E-mail sent</h1>
+  <p>"{{ post.title }}" was successfully sent to <em>{{ form.cleaned_data.to }}</em></p>
+</div>
+
+{% else %}
+<div class="share-wrapper">
+  <h1 class="share-heading">Share this post</h1>
+  <p class="share-subheading">Sharing <em>"{{ post.title }}"</em> by e-mail</p>
+
+  <div class="share-card">
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="Send e-mail">
+    </form>
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}
