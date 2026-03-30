@@ -752,3 +752,24 @@ backdrop-filter: none;
   color: var(--ink3);
   margin-bottom: 16px;
 }
+/* ═══════════════════════════════
+   TAGS
+═══════════════════════════════ */
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.post-tag {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--warm);
+  background: rgba(196, 149, 90, 0.08); /* warm tint */
+  border: 1px solid rgba(196, 149, 90, 0.25);
+  border-radius: 100px;
+  padding: 3px 10px;
+}
