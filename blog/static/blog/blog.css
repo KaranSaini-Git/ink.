@@ -770,6 +770,71 @@ backdrop-filter: none;
   color: var(--warm);
   background: rgba(196, 149, 90, 0.08); /* warm tint */
   border: 1px solid rgba(196, 149, 90, 0.25);
+  text-decoration: none; 
   border-radius: 100px;
   padding: 3px 10px;
+}
+
+/* ═══════════════════════════════
+   SIMILAR POSTS
+═══════════════════════════════ */
+.similar-posts-section {
+  margin-top: 48px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+}
+
+.similar-posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* each similar post — subtle card */
+.similar-post-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 20px;
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s var(--ease-smooth);
+}
+
+.similar-post-card:hover {
+  background: var(--white);
+  border-color: var(--warm);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.similar-post-title {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--ink);
+  transition: color 0.2s;
+}
+
+.similar-post-card:hover .similar-post-title {
+  color: var(--warm);
+}
+
+.similar-post-date {
+  font-size: 0.72rem;
+  color: var(--ink3);
+  white-space: nowrap;
+  margin-left: 16px;
+}
+.tag.tag--active {
+  background: var(--warm) !important;
+  color: var(--white) !important;
+  border-color: var(--warm) !important;
+}
+.no-posts {
+  font-size: 0.88rem;
+  color: var(--ink3);
+  margin-top: 16px;
 }

@@ -23,10 +23,14 @@
       <p>This is my blog. Thoughts, notes, and ideas — written down.</p>
       <div class="divider"></div>
       <h2>Tags</h2>
-      <a href="#" class="tag">Django</a>
-      <a href="#" class="tag">Python</a>
-      <a href="#" class="tag">Web</a>
-      <a href="#" class="tag">Design</a>
+      {% for tag in all_tags %}
+      <a href="{% url 'blog:post_list_by_tag' tag.slug %}"
+         class="tag {% if tag == active_tag %}tag--active{% endif %}">
+        {{ tag.name }}
+      </a>
+      {% empty %}
+      <p style="font-size: 0.8rem; color: var(--ink3)">No tags yet.</p>
+      {% endfor %}
     </aside>
 
   </body>

@@ -1,53 +1,65 @@
-{% extends "blog/base.html" %}
-{% load static %}
-
-{% block title %}{{ post.title }}{% endblock %}
-
-{% block content %}
+{% extends "blog/base.html" %} {% load static %} {% block title %}{{ post.title
+}}{% endblock %} {% block content %}
 
 <a href="/blog/" class="back-link">All posts</a>
 
 <div class="post-header">
-    <h1>{{ post.title }}</h1>
-    <p class="date">
-        {{ post.publish }}
-        <span class="sep"></span>
-        {{ post.author }}
-    </p>
+  <h1>{{ post.title }}</h1>
+  <p class="date">
+    {{ post.publish }}
+    <span class="sep"></span>
+    {{ post.author }}
+  </p>
 </div>
 
-<div class="post-body">
-    {{ post.body|linebreaks }}
-</div>
+<div class="post-body">{{ post.body|linebreaks }}</div>
 
-<a href="{% url 'blog:post_share' post.id %}" class="read-more" style="margin-top: 32px;">
-    Share this post
+<a
+  href="{% url 'blog:post_share' post.id %}"
+  class="read-more"
+  style="margin-top: 32px"
+>
+  Share this post
 </a>
 
 <!-- Comments section -->
 <div class="comments-section">
+  <h2 class="comments-heading">
+    {% with comments.count as total %} {{ total }} Comment{{ total|pluralize }}
+    {% endwith %}
+  </h2>
 
-    <h2 class="comments-heading">
-        {% with comments.count as total %}
-            {{ total }} Comment{{ total|pluralize }}
-        {% endwith %}
-    </h2>
-
-    {% for comment in comments %}
-    <div class="comment-card">
-        <div class="comment-meta">
-            <span class="comment-author">{{ comment.name }}</span>
-            <span class="comment-dot"></span>
-            <span class="comment-date">{{ comment.created }}</span>
-        </div>
-        <div class="comment-body">{{ comment.body|linebreaks }}</div>
+  {% for comment in comments %}
+  <div class="comment-card">
+    <div class="comment-meta">
+      <span class="comment-author">{{ comment.name }}</span>
+      <span class="comment-dot"></span>
+      <span class="comment-date">{{ comment.created }}</span>
     </div>
-    {% empty %}
-    <p class="no-comments">No comments yet — be the first to write one.</p>
-    {% endfor %}
+    <div class="comment-body">{{ comment.body|linebreaks }}</div>
+  </div>
+  {% empty %}
+  <p class="no-comments">No comments yet — be the first to write one.</p>
+  {% endfor %}
 
-    {% include "blog/post/includes/comment_form.html" %}
-
+  <!-- Similar posts -->
+  {% if similar_posts %}
+  <div class="similar-posts-section">
+    <h2 class="comments-heading">Similar Posts</h2>
+    <div class="similar-posts-list">
+      {% for similar_post in similar_posts %}
+      <a href="{{ similar_post.get_absolute_url }}" class="similar-post-card">
+        <span class="similar-post-title">{{ similar_post.title }}</span>
+        <span class="similar-post-date"
+          >{{ similar_post.publish|date:"M j, Y" }}</span
+        >
+      </a>
+      {% empty %}
+      <p class="no-comments">There are no similar posts yet.</p>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %} {% include "blog/post/includes/comment_form.html" %}
 </div>
 
 {% endblock %}
