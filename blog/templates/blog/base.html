@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}{% endblock %}</title>
+    <title>ink.</title>
     <link href="{% static 'blog/blog.css' %}" rel="stylesheet" />
   </head>
   <body>
@@ -20,18 +20,37 @@
 
     <aside id="sidebar">
       <h2>About</h2>
-      <p>This is my blog. Thoughts, notes, and ideas — written down.</p>
+      <h5>Welcome to my blog.</h5>
+      <p>
+        I write about programming, technology, and things I learn while building
+        projects. This space is a record of experiments, notes, and ideas —
+        shared as I continue learning and creating.
+      </p>
       <div class="divider"></div>
       <h2>Tags</h2>
       {% for tag in all_tags %}
-      <a href="{% url 'blog:post_list_by_tag' tag.slug %}"
-         class="tag {% if tag == active_tag %}tag--active{% endif %}">
+      <a
+        href="{% url 'blog:post_list_by_tag' tag.slug %}"
+        class="tag {% if tag == active_tag %}tag--active{% endif %}"
+      >
         {{ tag.name }}
       </a>
       {% empty %}
       <p style="font-size: 0.8rem; color: var(--ink3)">No tags yet.</p>
       {% endfor %}
-    </aside>
 
+      <div class="divider"></div>
+
+      <!-- Most commented posts -->
+      <h2>Most Commented</h2>
+      {% for post in most_commented %}
+      <a href="{{ post.get_absolute_url }}" class="most-commented-item">
+        <span class="most-commented-title">{{ post.title }}</span>
+        <span class="most-commented-count">{{ post.comment_count }}</span>
+      </a>
+      {% empty %}
+      <p style="font-size: 0.8rem; color: var(--ink3)">No comments yet.</p>
+      {% endfor %}
+    </aside>
   </body>
 </html>

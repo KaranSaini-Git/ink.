@@ -75,7 +75,8 @@ def post_list(request, tag_slug=None):
     return render(request, 'blog/post/list.html', {
     'posts': posts,
     'tag': tag,
-    'all_tags': Tag.objects.all(),
+    'all_tags': Tag.objects.filter(post__status='PB').distinct().order_by('-pk'),
+    'most_commented': Post.published.annotate(comment_count=Count('comments')).order_by('-comment_count')[:5],
     'active_tag': tag,  # 👈 this is what drives the highlight
 })
 
@@ -103,7 +104,8 @@ def post_detail(request, year, month, day, post):
         'comments': comments,
         'form': form,
         'similar_posts': similar_posts,
-        'all_tags': Tag.objects.all(),
+        'all_tags': Tag.objects.filter(post__status='PB').distinct().order_by('-pk'),
+        'most_commented': Post.published.annotate(comment_count=Count('comments')).order_by('-comment_count')[:5],
     })
 
 
