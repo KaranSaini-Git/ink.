@@ -16,7 +16,7 @@
 
 ## 📌 Overview
 
-**ink.** is a personal Django-powered blog project built to practice backend fundamentals and ship a complete content workflow: publishing posts, reading them in a polished UI, commenting, and sharing by email.
+**ink.** is a personal Django-powered blog project built to practice backend fundamentals and ship a complete content workflow: publishing posts, reading them in a polished UI, commenting.
 
 ---
 
@@ -36,10 +36,6 @@
 ### 💬 Comment system
 - Visitors can submit comments (name, email, body).
 - Only comments with `active=True` are shown publicly.
-
-### 📤 Share by email
-- Built-in form for sharing any published post via email.
-- Implemented with Django forms + `send_mail`.
 
 ### 🛠️ Enhanced Django admin
 - Dedicated admin config for `Post` and `Comment`:
@@ -118,25 +114,14 @@ Open: `http://127.0.0.1:8000/blog/`
 
 ---
 
-## ⚙️ Optional Email Setup (for share feature)
+## 🤝 Contributing
 
-Configure email settings in your Django settings / environment variables so `send_mail` can deliver messages.
+Contributions, improvements, and refactor suggestions are welcome.
 
-Typical Gmail SMTP setup:
-- Host: `smtp.gmail.com`
-- Port: `587`
-- TLS: `True`
-- Valid app password required
-
----
-
-## 🗺️ Roadmap Ideas
-
-- Dynamic tag system in UI
-- Related/similar posts section
-- Rich text editor for post body
-- Search functionality
-- Deployment + CI checks
+1. Fork the repo
+2. Create a feature branch
+3. Commit changes
+4. Open a pull request
 
 ---
 
