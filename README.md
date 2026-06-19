@@ -1,120 +1,91 @@
 # ink.
 
-A personal blog built with Django. Currently a work in progress — core post management is functional, with email features coming soon.
+A personal Django blog project focused on clean writing, simple publishing, and an editorial-style interface.
 
-> ⚠️ **This project is still under active development.** Some features may be incomplete or subject to change.
+## Features
 
----
+- **Post publishing workflow**
+  - Posts support **Draft** and **Published** states.
+  - Public views only show published posts via a custom manager.
 
-## Features (so far)
+- **Post detail routing with dated URLs**
+  - Each post has a slug and date-based canonical URL generated through `get_absolute_url()`.
 
-- Create, edit, and delete blog posts
-- Environment variable support via `.env`
-- Email notification system *(in progress)*
+- **Blog listing with pagination**
+  - Post list is paginated at **3 posts per page**.
+  - Handles invalid or out-of-range page values gracefully.
 
----
+- **Comments system**
+  - Visitors can submit comments with name, email, and body.
+  - Only active comments are shown on post detail pages.
 
-## Requirements
+- **Share by email**
+  - Built-in form to email a post recommendation.
+  - Uses Django email utilities (`send_mail`) to send the message.
 
-- Python 3.12+
-- Pipenv
+- **Admin experience improvements**
+  - Customized `Post` and `Comment` admin panels with:
+    - list views
+    - filters
+    - search fields
+    - slug auto-population
+    - publish date hierarchy
+    - facet counts for filters
 
----
+- **Custom frontend styling**
+  - Handcrafted CSS design system with:
+    - responsive layout
+    - animated post cards
+    - polished typography and spacing
+    - dedicated styles for list, detail, share, pagination, and comments sections
 
-## Getting Started
+## Tech Stack
 
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/KaranSaini-Git/ink..git
-cd ink.
-```
-
-### 2. Install dependencies
-
-```bash
-pipenv install
-```
-
-### 3. Activate the virtual environment
-
-```bash
-pipenv shell
-```
-
-### 4. Set up your `.env` file
-
-Create a `.env` file in the root of the project (same folder as `manage.py`):
-
-```bash
-touch .env
-```
-
-Then open it and add the following:
-
-```env
-SECRET_KEY=your-secret-key-here
-DEBUG=True
-```
-
-To generate a secret key, run this inside your pipenv shell:
-
-```bash
-python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
-```
-
-Copy the output and paste it as the value for `SECRET_KEY` in your `.env` file.
-
-### 5. Run migrations
-
-```bash
-python manage.py migrate
-```
-
-### 6. Create a superuser (optional, for admin access)
-
-```bash
-python manage.py createsuperuser
-```
-
-### 7. Run the development server
-
-```bash
-python manage.py runserver
-```
-
-Visit `http://127.0.0.1:8000` in your browser.
-
----
+- **Backend:** Django
+- **Language:** Python
+- **Database (default):** SQLite
+- **Frontend:** HTML + CSS
+- **Forms/Email:** Django Forms + Django Mail
 
 ## Project Structure
 
-```
-ink/
+```text
+.
+├── DjangoFiles/                 # Project configuration (settings, urls, wsgi, asgi)
+├── blog/                        # Main blog app
+│   ├── migrations/
+│   ├── static/blog/blog.css
+│   ├── templates/blog/
+│   │   ├── base.html
+│   │   └── post/
+│   │       ├── list.html
+│   │       ├── detail.html
+│   │       ├── share.html
+│   │       ├── comment.html
+│   │       └── includes/
+│   ├── admin.py
+│   ├── forms.py
+│   ├── models.py
+│   ├── urls.py
+│   └── views.py
 ├── manage.py
 ├── Pipfile
-├── Pipfile.lock
-├── .env              ← you create this locally (not pushed to GitHub)
-├── .gitignore
-└── ...
+└── Pipfile.lock
 ```
 
----
+## Run Locally
+
+1. Install dependencies (Pipenv):
+   - `pipenv install`
+2. Activate shell:
+   - `pipenv shell`
+3. Apply migrations:
+   - `python manage.py migrate`
+4. Start server:
+   - `python manage.py runserver`
+5. Open:
+   - `http://127.0.0.1:8000/blog/`
 
 ## Notes
 
-- The `.env` file is **not included** in this repository for security reasons. You must create it yourself following the instructions above.
-- This project uses Django's built-in SQLite database for development. No additional database setup is required.
-- Email functionality is currently being implemented and is not yet available.
-
----
-
-## Contributing
-
-This is a personal project and not currently open to contributions. Feel free to fork it and build your own version!
-
----
-
-## Author
-
-Made with 🖊️ by Karan Singh Saini. 
+This README reflects features that are currently implemented in the repository codebase on the `main` branch.
